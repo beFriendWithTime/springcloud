@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: cloud-payment-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initial-size: 5
+    max-idle: 10
+    max-wait: 10000
+    min-idle: 5
+    password: 123456
+    url: jdbc:mysql://localhost:3306/cloud?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.lc.springcloud.dto
+server:
+  port: 8001
+  servlet:
+    context-path: /web
+eureka:
+  client:
+    # 不注册自己
+    register-with-eureka: true
+    # 表示自己是注册中心，不用检索服务
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+  instance:
+    #修改eureka上显示的主机名
+    instance-id: payment8001
+    #访问路径可以显示ip
+    prefer-ip-address: true
+    #Client往服务器心跳发送间隔，默认为30s
+    lease-renewal-interval-in-seconds: 30
+    #Eureka服务器在最后一次收到心跳后的等待上限，默认为90s
+    lease-expiration-duration-in-seconds: 90

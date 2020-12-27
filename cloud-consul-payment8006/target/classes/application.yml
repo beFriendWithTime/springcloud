@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: cloud-payment-consul-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initial-size: 5
+    max-idle: 10
+    max-wait: 10000
+    min-idle: 5
+    password: 123456
+    url: jdbc:mysql://localhost:3306/cloud?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.lc.springcloud.dto
+server:
+  port: 8006
+#  加入此配置consul会无法通过健康检测
+#  servlet:
+#    context-path: /web
+cloud:
+  consul:
+    host: localhost
+    port: 8500
+    discovery:
+      service-name: ${spring.application.name}
+      prefer-ip-address: true
+      heartbeat:
+        enabled: true

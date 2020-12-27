@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: config-3344.com
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/gujx-java/Config-repo.git
+          search-paths: Config-repo
+          username: ""
+          password: ""
+      label: main
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/,http://localhost:7002/eureka/
+server:
+  port: 3344
